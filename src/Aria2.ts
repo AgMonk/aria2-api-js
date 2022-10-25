@@ -5,6 +5,7 @@ import {GlobalStatus} from "./interface/ResponseResult";
 import {AddUriParam} from "./interface/ParamFields";
 import {Aria2Options} from "./interface/Aria2Options";
 import {Aria2Task} from "./interface/Aria2Task";
+import {MulticallParam} from "./interface/MulticallParam";
 
 export class Aria2 {
     id: number
@@ -79,6 +80,13 @@ export class Aria2 {
     }
 
     /**
+     * 查询版本
+     */
+    getVersion() {
+        return this.callM(Aria2Method.GET_VERSION)
+    }
+
+    /**
      * 查询已停止任务
      * @param page 页码
      * @param size 记录数
@@ -89,4 +97,11 @@ export class Aria2 {
         return this.callM(Aria2Method.TELL_STOPPED, [Math.max(0, (page - 1)), size, keys || []])
     }
 
+    /**
+     * 多个请求
+     * @param params 参数
+     */
+    multiCall(params: MulticallParam[]) {
+        return this.callM(Aria2Method.MULTI_CALL, params)
+    }
 }
