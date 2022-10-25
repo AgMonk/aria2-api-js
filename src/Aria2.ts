@@ -99,10 +99,32 @@ export class Aria2 {
     }
 
     /**
+     * 查询活动任务
+     * @param keys
+     */
+    tellActive(keys?: string[]): Promise<Aria2Task[]> {
+        return this.callM(Aria2Method.TELL_ACTIVE, [keys || []])
+    }
+
+    /**
      * 多个请求
      * @param params 参数
      */
     multiCall(params: MulticallParam[]): Promise<Array<any>> {
         return this.callM(Aria2Method.MULTI_CALL, [params])
     }
+
+    remove(gid: string): Promise<string> {
+        return this.callM(Aria2Method.remove, [gid])
+    }
+
+    /**
+     * 删除下载完成的任务
+     * @param gid gid
+     */
+    removeDownloadResult(gid: string): Promise<string> {
+        return this.callM(Aria2Method.REMOVE_DOWNLOAD_RESULT, [gid])
+    }
+
+
 }
