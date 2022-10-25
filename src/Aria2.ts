@@ -2,7 +2,9 @@ import {AxiosInstance, AxiosResponse} from "axios";
 import {Aria2RequestParam} from "./interface/Aria2RequestParam";
 import {Aria2Method} from "./Aria2Method";
 import {GlobalStatus} from "./interface/ResponseResult";
-import {AddUriParam, Aria2Options, Aria2Task} from "./interface/ParamFields";
+import {AddUriParam} from "./interface/ParamFields";
+import {Aria2Options} from "./interface/Aria2Options";
+import {Aria2Task} from "./interface/Aria2Task";
 
 export class Aria2 {
     id: number
@@ -83,8 +85,8 @@ export class Aria2 {
      * @param keys https://aria2.github.io/manual/en/html/aria2c.html#aria2.tellStatus
      * @since 2022/10/21 14:10
      */
-    tellStop(page: number, size: number, keys: string[]): Promise<Aria2Task[]> {
-        return this.callM(Aria2Method.TELL_STOPPED, [Math.max(0, (page - 1)), size, keys])
+    tellStop(page: number, size: number, keys?: string[]): Promise<Aria2Task[]> {
+        return this.callM(Aria2Method.TELL_STOPPED, [Math.max(0, (page - 1)), size, keys || []])
     }
 
 }
