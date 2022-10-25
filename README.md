@@ -6,8 +6,9 @@ base on axios
 
 ```js
     //token 如果配置了的话
+let instance = axios.create({baseURL: "/aria2", timeout: 10000})
 let token = "token"
-let aria2 = new Aria2(this.instance, token);
+let aria2 = new Aria2(instance, token);
 // let aria2 = new Aria2(this.instance);
 
 //原生用法
