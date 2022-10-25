@@ -1,5 +1,8 @@
 import {AxiosInstance, AxiosResponse} from "axios";
 import {Aria2RequestParam} from "./interface/Aria2RequestParam";
+import {Aria2Method} from "./Aria2Method";
+import {GlobalStatus} from "./interface/ResponseResult";
+import {AddUriParam} from "./interface/ParamFields";
 
 export class Aria2 {
     id: number
@@ -31,18 +34,38 @@ export class Aria2 {
         });
     }
 
-    call(method: string, params: any[]): Promise<AxiosResponse> {
+    call(method: string, params?: any[]): Promise<any> {
         if (this.token) {
-            params = ["token:" + this.token, ...params]
+            let s = "token:" + this.token
+            params = params ? [s, ...params] : [s]
         }
         let param: Aria2RequestParam = {
             id: "" + this.id++,
-            params, method, jsonrpc: "2.0"
+            params: params || [], method, jsonrpc: "2.0"
         }
         return this.instance.post("", param).then(res => {
-            return res.data
+            return res.data.result
         })
     }
 
+    callM(method: Aria2Method, params?: any[]): Promise<any> {
+        return this.call(method, params)
+    }
+
+    /**
+     * 添加下载
+     * @param urls url
+     * @param param 参数
+     */
+    addUri(urls: string[], param: AddUriParam): Promise<string> {
+        return this.callM(Aria2Method.ADD_URI, [urls, param])
+    }
+
+    /**
+     * 获取概况统计
+     */
+    getGlobalStat(): Promise<GlobalStatus> {
+        return this.callM(Aria2Method.GET_GLOBAL_STAT)
+    }
 
 }
