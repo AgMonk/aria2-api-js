@@ -6,6 +6,7 @@ import {AddUriParam} from "./interface/ParamFields";
 import {Aria2Options} from "./interface/Aria2Options";
 import {Aria2Task} from "./interface/Aria2Task";
 import {MulticallParam} from "./interface/MulticallParam";
+import {Aria2Version} from "./interface/Aria2Version";
 
 export class Aria2 {
     id: number
@@ -82,7 +83,7 @@ export class Aria2 {
     /**
      * 查询版本
      */
-    getVersion() {
+    getVersion(): Promise<Aria2Version> {
         return this.callM(Aria2Method.GET_VERSION)
     }
 
@@ -101,7 +102,7 @@ export class Aria2 {
      * 多个请求
      * @param params 参数
      */
-    multiCall(params: MulticallParam[]) {
-        return this.callM(Aria2Method.MULTI_CALL, params)
+    multiCall(params: MulticallParam[]): Promise<Array<any>> {
+        return this.callM(Aria2Method.MULTI_CALL, [params])
     }
 }
