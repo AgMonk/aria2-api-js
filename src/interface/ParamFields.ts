@@ -3,9 +3,9 @@
 
 export interface AddUriParam {
     //保存目录
-    dir: string;
+    dir?: string;
     //文件名
-    out: string;
-    referer: string;
-    cookie: string;
+    out?: string;
+    referer?: string;
+    cookie?: string;
 }
