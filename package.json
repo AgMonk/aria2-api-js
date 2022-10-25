@@ -1,6 +1,6 @@
 {
   "name": "aria2-api",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "aria2-api",
   "main": "index.js",
   "scripts": {

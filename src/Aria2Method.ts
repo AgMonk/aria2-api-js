@@ -1,6 +1,6 @@
-export enum Aria2Method{
+export enum Aria2Method {
     ADD_URI = "aria2.addUri",
-    remove = "aria2.remove",
+    REMOVE = "aria2.remove",
     TELL_STATUS = "aria2.tellStatus",
     TELL_ACTIVE = "aria2.tellActive",
     TELL_WAITING = "aria2.tellWaiting",

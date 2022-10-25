@@ -53,7 +53,7 @@ export class Aria2 {
     }
 
     callM(method: Aria2Method, params?: any[]): Promise<any> {
-        return this.call(method, params)
+        return this.call(method, params || [])
     }
 
     /**
@@ -99,11 +99,30 @@ export class Aria2 {
     }
 
     /**
+     * 查询等待的任务
+     * @param page 页码
+     * @param size 记录数
+     * @param keys keys
+     */
+    tellWaiting(page: number, size: number, keys?: string[]): Promise<Aria2Task[]> {
+        return this.callM(Aria2Method.TELL_WAITING, [Math.max(0, (page - 1)), size, keys || []])
+    }
+
+    /**
      * 查询活动任务
      * @param keys
      */
     tellActive(keys?: string[]): Promise<Aria2Task[]> {
-        return this.callM(Aria2Method.TELL_ACTIVE, [keys || []])
+        return this.callM(Aria2Method.TELL_ACTIVE, keys)
+    }
+
+    /**
+     * 查询任务状态
+     * @param gid gid
+     * @param keys keys
+     */
+    tellStatus(gid: string, keys?: string[]): Promise<Aria2Task[]> {
+        return this.callM(Aria2Method.TELL_STATUS, [gid, keys])
     }
 
     /**
@@ -115,7 +134,7 @@ export class Aria2 {
     }
 
     remove(gid: string): Promise<string> {
-        return this.callM(Aria2Method.remove, [gid])
+        return this.callM(Aria2Method.REMOVE, [gid])
     }
 
     /**
