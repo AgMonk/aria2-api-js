@@ -4,13 +4,17 @@
   "description": "aria2-api",
   "main": "index.js",
   "scripts": {
-    "pub": "echo f|xcopy package.json dist\\package.json /Y && echo f|xcopy README.md dist\\README.md /Y && cd dist && npm publish --access public && cd.. && rmdir dist /s /q",
+    "pub": "npm publish --access public && rmdir dist /s /q",
     "ver": "git add . && git commit -m \"publish to npm\" && npm version patch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "aria2",
     "api"
+  ],
+  "files": [
+    "dist",
+    "README.md"
   ],
   "author": "gin",
   "license": "ISC",
