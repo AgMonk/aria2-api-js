@@ -2,7 +2,7 @@
   "name": "aria2-api",
   "version": "1.0.9",
   "description": "aria2-api",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "pub": "npm publish --access public && rmdir dist /s /q",
     "ver": "git add . && git commit -m \"publish to npm\" && npm version patch",
