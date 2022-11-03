@@ -1,6 +1,6 @@
 {
   "name": "aria2-api",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "aria2-api",
   "main": "dist/index.js",
   "scripts": {
