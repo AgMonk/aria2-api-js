@@ -20,7 +20,7 @@ export class Aria2 {
         this.id = 0;
 
         instance.interceptors.response.use(res => {
-            console.log(`${new Date().toLocaleString()} Request Success: `, res)
+            console.debug(`${new Date().toLocaleString()} Request Success: `, res)
             return res;
         }, error => {
             let response = <AxiosResponse>error.response;
